@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use Edwin\Calendar\Calendar;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
 use Laravel\Nova\Fields\Gravatar;
@@ -62,6 +63,7 @@ class User extends Resource
                 ->onlyOnForms()
                 ->creationRules('required', Rules\Password::defaults())
                 ->updateRules('nullable', Rules\Password::defaults()),
+
         ];
     }
 
