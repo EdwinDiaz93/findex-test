@@ -12,7 +12,7 @@
             </ModalForm>
 
             <div class="flex flex-row flex-wrap gap-3 mt-3">
-                <button class="p-2 font-semibold border-2 mr-2" @click="submitForm">Guardar</button>
+                <button class="p-2 font-semibold border-2 mr-2" @click="submitForm">Save</button>
                 <button @click="showModal = false" class="p-2 font-semibold border-2 rounded-md ">Close</button>
             </div>
         </Modal>
@@ -21,7 +21,7 @@
         <FullCalendar :options="calendarOptions">
             <template #eventContent='arg'>
                 <div class="flex flex-row flex-wrap items-center ">
-                    <span class="text-lg cursor-pointer" @click="updateUser(arg.event.id)">{{ arg.event.title }}</span>
+                    <span class="text-lg cursor-pointer" @click="showUpdateForm(arg.event.id)">{{ arg.event.title }}</span>
                     <svg @click="() => deleteUser(arg.event.id)" xmlns="http://www.w3.org/2000/svg" fill="none"
                         viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 ml-3 cursor-pointer ">
                         <path stroke-linecap="round" stroke-linejoin="round"
@@ -34,6 +34,7 @@
 </template>
 
 <script >
+import Swal from 'sweetalert2';
 import FullCalendar from '@fullcalendar/vue3';
 import DayGridPlugin from '@fullcalendar/daygrid';
 import Modal from '../components/general/Modal.vue';
@@ -59,9 +60,9 @@ export default {
             calendarOptions: {
                 plugins: [DayGridPlugin],
                 initialView: 'dayGridMonth',
-                weekends: false,
+                weekends: true,
                 events: [],
-            }
+            },
         }
     },
     methods: {
@@ -75,52 +76,112 @@ export default {
                 start: new Date(user.created_at)
             }));
         },
-        updateUser(id) {
+        showUpdateForm(id) {
             const user = this.users.find(user => user.id == id);
             if (!user) return;
             this.user = user;
             this.showModal = true;
         },
         async deleteUser(id) {
-            const response = await fetch(`/api/calendar/users/${id}`, {
-                method: 'DELETE',
-                headers: {
-                    "Content-Type": "application/json",
-                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                },
-            });
+            const user = this.users.find(user => user.id == id);
+            Swal.fire({
+                title: `user ${user.name} will be deleted?`,
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Delete'
+            }).then(async (result) => {
+                if (result.isConfirmed) {
+                    const response = await fetch(`/api/calendar/users/${id}`, {
+                        method: 'DELETE',
+                        headers: {
+                            "Content-Type": "application/json",
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        },
+                    });
 
-            await response.json();
+                    await response.json();
 
-            await this.getUsers();
+                    await this.getUsers();
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `user ${user.name} was deleted`,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+            })
+
         },
 
         async getSubmittedUser(user) {
             if (user.id === 0) {
-                const response = await fetch('/api/calendar/users', {
-                    method: 'POST',
-                    body: JSON.stringify(user),
-                    headers: {
-                        "Content-Type": "application/json",
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    },
-                });
-                await response.json();
-                this.showModal = false;
-                await this.getUsers();
+                try {
+                    const response = await fetch('/api/calendar/users', {
+                        method: 'POST',
+                        body: JSON.stringify(user),
+                        headers: {
+                            "Content-Type": "application/json",
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        },
+                    });
+                    await response.json();
+                    this.showModal = false;
+                    await this.getUsers();
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `user ${user.name} was created`,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } catch (error) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: `something went wrong`,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+
             } else {
-                const { id, ...rest } = user;
-                const response = await fetch(`/api/calendar/users/${id}`, {
-                    method: 'PUT',
-                    body: JSON.stringify(rest),
-                    headers: {
-                        "Content-Type": "application/json",
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                    },
-                });
-                await response.json();
-                this.showModal = false;
-                await this.getUsers();
+                try {
+                    const { id, ...rest } = user;
+                    const response = await fetch(`/api/calendar/users/${id}`, {
+                        method: 'PUT',
+                        body: JSON.stringify(rest),
+                        headers: {
+                            "Content-Type": "application/json",
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                        },
+                    });
+                    await response.json();
+                    this.showModal = false;
+                    await this.getUsers();
+
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: `user ${user.name} was updated`,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                } catch (error) {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'warning',
+                        title: `something went wrong`,
+                        showConfirmButton: false,
+                        timer: 2000
+                    });
+                }
+
             }
 
         },
