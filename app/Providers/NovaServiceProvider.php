@@ -34,9 +34,9 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function routes()
     {
         Nova::routes()
-                ->withAuthenticationRoutes()
-                ->withPasswordResetRoutes()
-                ->register();
+            ->withAuthenticationRoutes()
+            ->withPasswordResetRoutes()
+            ->register();
     }
 
     /**
@@ -49,8 +49,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     protected function gate()
     {
         Gate::define('viewNova', function ($user) {
-            return in_array($user->email, [
-            ]);
+            return in_array($user->email, []);
         });
     }
 
@@ -89,17 +88,15 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         //
     }
 
-    public function menu(){
-        Nova::mainMenu(function(Request $request){
+    public function menu()
+    {
+        Nova::mainMenu(function (Request $request) {
             return [
                 MenuSection::dashboard(Main::class)->icon('chart-bar'),
                 MenuSection::make('Calendar')->path('/calendar')->icon('calendar'),
-                MenuSection::make('Users')->path('/onboarding')->icon('user'),
+                MenuSection::make('Users Onboarding')->path('/onboarding')->icon('user'),
 
             ];
         });
-
-
-
     }
 }

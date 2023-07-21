@@ -16,11 +16,11 @@
         </table>
         <div class="flex flex-row flex-wrap items-center justify-right w-full mt-2">
 
-            <button :id="prevId" :disabled="!data.prev_page_url" class="border-2 rounded-md font-bold p-2"
+            <button :id="prevId" :disabled="!data.prev_page_url" class="border-2 rounded-md font-bold p-2 warn-button"
                 @click="select(data.prev_page_url)">
                 Previous Page
             </button>
-            <button :id="nextId" :disabled="!data.next_page_url" class="border-2 rounded-md font-bold p-2 ml-3"
+            <button :id="nextId" :disabled="!data.next_page_url" class="border-2 rounded-md font-bold p-2 ml-3 add-button"
                 @click="select(data.next_page_url)">
                 Next Page
             </button>
@@ -96,5 +96,14 @@ const { data, headers, fields, idRow, prevId, nextId } = defineProps(['data', 'h
 .pagination a:hover:not(.active) {
     background-color: #ddd;
     border-radius: 5px;
+}
+.warn-button {
+    background-color: #f59133;
+    color: #fff;
+}
+
+.add-button {
+    background-color: #706edf;
+    color: #fff;
 }
 </style>
