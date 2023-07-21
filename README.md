@@ -45,4 +45,5 @@ php artisan nova:user
 ```
 esto pedira llenar unos datos para tener el usuario nova
 
+9. ver demo en el siguiente [enlace](https://drive.google.com/file/d/19YFHyv1T7QdpsjLpQIIAJsCHxZpdzINA/view?usp=drive_link)
 
