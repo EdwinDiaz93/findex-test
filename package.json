@@ -4,10 +4,10 @@
     "scripts": {
         "dev": "npm run build-calendar && npm run build-onboarding",
         "build": "npm run build-calendar-prod && npm run build-onboarding-prod",
-        "build-calendar": "cd nova-components/Calendar && npm run dev",
-        "build-calendar-prod": "cd nova-components/Calendar && npm run prod",
-        "build-onboarding": "cd nova-components/Onboarding && npm run dev",
-        "build-onboarding-prod": "cd nova-components/Onboarding && npm run prod"
+        "build-calendar": "cd nova-components/Calendar && npm install && npm run dev",
+        "build-calendar-prod": "cd nova-components/Calendar && npm install && npm run prod",
+        "build-onboarding": "cd nova-components/Onboarding && npm install && npm run dev",
+        "build-onboarding-prod": "cd nova-components/Onboarding && npm install && npm run prod"
     },
     "devDependencies": {
         "axios": "^1.1.2",
