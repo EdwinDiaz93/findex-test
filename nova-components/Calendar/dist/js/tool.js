@@ -168,7 +168,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   data: function data() {
     return {
-      users: [],
       user: {
         id: 0,
         name: '',
@@ -201,39 +200,63 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
               return response.json();
             case 5:
               data = _context.sent;
-              _this.users = data;
-              _this.events = data.map(function (user) {
+              _this.calendarOptions.events = data.map(function (user) {
                 return {
                   title: user.name,
                   id: user.id,
                   start: new Date(user.created_at)
                 };
               });
-            case 8:
+            case 7:
             case "end":
               return _context.stop();
           }
         }, _callee);
       }))();
     },
-    selectUser: function selectUser(id) {
+    updateUser: function updateUser(id) {
       var user = this.users.find(function (user) {
         return user.id == id;
       });
-      console.log(user);
     },
-    submitForm: function submitForm() {
-      this.$refs.userForm.submit();
-    },
-    getSubmittedUser: function getSubmittedUser(user) {
+    deleteUser: function deleteUser(id) {
       var _this2 = this;
       return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2() {
-        var response, result;
+        var response;
         return _regeneratorRuntime().wrap(function _callee2$(_context2) {
           while (1) switch (_context2.prev = _context2.next) {
             case 0:
-              _this2.showModal = false;
-              _context2.next = 3;
+              _context2.next = 2;
+              return fetch("/api/calendar/users/".concat(id), {
+                method: 'DELETE',
+                headers: {
+                  "Content-Type": "application/json",
+                  'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                }
+              });
+            case 2:
+              response = _context2.sent;
+              _context2.next = 5;
+              return response.json();
+            case 5:
+              _context2.next = 7;
+              return _this2.getUsers();
+            case 7:
+            case "end":
+              return _context2.stop();
+          }
+        }, _callee2);
+      }))();
+    },
+    getSubmittedUser: function getSubmittedUser(user) {
+      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
+        var response;
+        return _regeneratorRuntime().wrap(function _callee3$(_context3) {
+          while (1) switch (_context3.prev = _context3.next) {
+            case 0:
+              _this3.showModal = false;
+              _context3.next = 3;
               return fetch('/api/calendar/users', {
                 method: 'POST',
                 body: JSON.stringify(user),
@@ -243,46 +266,36 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 }
               });
             case 3:
-              response = _context2.sent;
-              _context2.next = 6;
+              response = _context3.sent;
+              _context3.next = 6;
               return response.json();
             case 6:
-              result = _context2.sent;
-              console.log(result);
+              _context3.next = 8;
+              return _this3.getUsers();
             case 8:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
-        }, _callee2);
+        }, _callee3);
       }))();
-    }
-  },
-  computed: {
-    events: function events() {
-      var events = this.users.map(function (user) {
-        return {
-          title: user.name,
-          start: new Date(user.created_at)
-        };
-      });
-      return events;
+    },
+    submitForm: function submitForm() {
+      this.$refs.userForm.submit();
     }
   },
   created: function created() {
-    var _this3 = this;
-    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee3() {
-      return _regeneratorRuntime().wrap(function _callee3$(_context3) {
-        while (1) switch (_context3.prev = _context3.next) {
+    var _this4 = this;
+    return _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee4() {
+      return _regeneratorRuntime().wrap(function _callee4$(_context4) {
+        while (1) switch (_context4.prev = _context4.next) {
           case 0:
-            _context3.next = 2;
-            return _this3.getUsers();
+            _context4.next = 2;
+            return _this4.getUsers();
           case 2:
-            _this3.calendarOptions.events = _this3.events;
-          case 3:
           case "end":
-            return _context3.stop();
+            return _context4.stop();
         }
-      }, _callee3);
+      }, _callee4);
     }))();
   }
 });
@@ -452,7 +465,19 @@ var _hoisted_2 = /*#__PURE__*/_withScopeId(function () {
     "class": "text-center text-xl"
   }, "User Form", -1 /* HOISTED */);
 });
-var _hoisted_3 = ["onClick"];
+var _hoisted_3 = {
+  "class": "flex flex-row flex-wrap items-center"
+};
+var _hoisted_4 = ["onClick"];
+var _hoisted_5 = ["onClick"];
+var _hoisted_6 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    d: "M15 12H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
+  }, null, -1 /* HOISTED */);
+});
+var _hoisted_7 = [_hoisted_6];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_ModalForm = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("ModalForm");
   var _component_Modal = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Modal");
@@ -494,12 +519,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     options: $data.calendarOptions
   }, {
     eventContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (arg) {
-      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+      return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
         "class": "text-lg cursor-pointer",
         onClick: function onClick($event) {
-          return $options.selectUser(arg.event.id);
+          return _ctx.selectUser(arg.event.id);
         }
-      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(arg.event.title), 9 /* TEXT, PROPS */, _hoisted_3)];
+      }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(arg.event.title), 9 /* TEXT, PROPS */, _hoisted_4), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("svg", {
+        onClick: function onClick() {
+          return $options.deleteUser(arg.event.id);
+        },
+        xmlns: "http://www.w3.org/2000/svg",
+        fill: "none",
+        viewBox: "0 0 24 24",
+        "stroke-width": "1.5",
+        stroke: "currentColor",
+        "class": "w-6 h-6 ml-3 cursor-pointer"
+      }, _hoisted_7, 8 /* PROPS */, _hoisted_5))])];
     }),
     _: 1 /* STABLE */
   }, 8 /* PROPS */, ["options"])]);
