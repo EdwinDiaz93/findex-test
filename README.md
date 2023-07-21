@@ -20,6 +20,7 @@ composer install
 
 4. Crer una copia del archivo env.example y renombrarlo a .env 
 
+
 5. Opcional: ejecutar el comando para poblar la base de datos:
 ```
 php artisan migrate:refresh --seed
