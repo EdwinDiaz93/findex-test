@@ -1,11 +1,11 @@
 <template>
     <div>
-        <table id="main">
+        <table class="main">
             <tr>
                 <th v-for="header in headers" :key="header">{{ header }}</th>
                 <th>Actions</th>
             </tr>
-            <tr v-for="(row) in data.data" :key="row.id">
+            <tr v-for="(row, i) in data.data" :key="row.id" :id="i === 0 && idRow">
                 <td>{{ row[fields[0]] }}</td>
                 <td>{{ row[fields[1]] }}</td>
                 <td>{{ row[fields[2]] }}</td>
@@ -16,11 +16,11 @@
         </table>
         <div class="flex flex-row flex-wrap items-center justify-right w-full mt-2">
 
-            <button :disabled="!data.prev_page_url" class="border-2 rounded-md font-bold p-2"
+            <button :id="prevId" :disabled="!data.prev_page_url" class="border-2 rounded-md font-bold p-2"
                 @click="select(data.prev_page_url)">
                 Previous Page
             </button>
-            <button :disabled="!data.next_page_url" class="border-2 rounded-md font-bold p-2 ml-3"
+            <button :id="nextId" :disabled="!data.next_page_url" class="border-2 rounded-md font-bold p-2 ml-3"
                 @click="select(data.next_page_url)">
                 Next Page
             </button>
@@ -37,34 +37,34 @@ const select = (url) => {
     emitter('select', url);
 }
 
-const { data, headers, fields } = defineProps(['data', 'headers', 'fields']);
+const { data, headers, fields, idRow, prevId, nextId } = defineProps(['data', 'headers', 'fields', 'idRow', 'prevId', 'nextId']);
 
 
 
 </script>
 
 <style  scoped>
-#main {
+.main {
     font-family: Arial, Helvetica, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-#main td,
-#main th {
+.main td,
+.main th {
     border: 1px solid #ddd;
     padding: 8px;
 }
 
-#main tr:nth-child(even) {
+.main tr:nth-child(even) {
     background-color: #f2f2f2;
 }
 
-#main tr:hover {
+.main tr:hover {
     background-color: #ddd;
 }
 
-#main th {
+.main th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
