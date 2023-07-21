@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Nova\Dashboards\Main;
 use App\Nova\User;
 use Edwin\Calendar\Calendar;
+use Edwin\Onboarding\Onboarding;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Laravel\Nova\Menu\MenuSection;
@@ -49,7 +50,6 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         Gate::define('viewNova', function ($user) {
             return in_array($user->email, [
-                //
             ]);
         });
     }
@@ -75,6 +75,7 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
     {
         return [
             new Calendar(),
+            new Onboarding(),
         ];
     }
 
@@ -92,7 +93,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::mainMenu(function(Request $request){
             return [
                 MenuSection::dashboard(Main::class)->icon('chart-bar'),
-                MenuSection::make('calendar')->path('/calendar')->icon('calendar'),
+                MenuSection::make('Calendar')->path('/calendar')->icon('calendar'),
+                MenuSection::make('Users')->path('/onboarding')->icon('user'),
 
             ];
         });
