@@ -7,19 +7,18 @@
 git clone https://github.com/EdwinDiaz93/findex-test.git
 ```
 
-2. Añadir a las variables de entorno proporcionada para esta prueba:
+2. Crer una copia del archivo env.example y renombrarlo a .env 
+
+3. Añadir a las variables de entorno proporcionada para esta prueba:
 
 ```
 NOVA_LICENSE_KEY
 ```
 
-3. dentro del directorio del proyecto, reconstruir las dependencias de laravel con el comando:
+4. dentro del directorio del proyecto, reconstruir las dependencias de laravel con el comando:
 ```
 composer install
 ```
-
-4. Crer una copia del archivo env.example y renombrarlo a .env 
-
 
 5. Opcional: ejecutar el comando para poblar la base de datos:
 ```
