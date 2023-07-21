@@ -246,61 +246,71 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         return _regeneratorRuntime().wrap(function _callee3$(_context3) {
           while (1) switch (_context3.prev = _context3.next) {
             case 0:
-              user = _this2.users.find(function (user) {
-                return user.id == id;
-              });
-              sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-                title: "user ".concat(user.name, " will be deleted?"),
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Delete'
-              }).then( /*#__PURE__*/function () {
-                var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(result) {
-                  var response;
-                  return _regeneratorRuntime().wrap(function _callee2$(_context2) {
-                    while (1) switch (_context2.prev = _context2.next) {
-                      case 0:
-                        if (!result.isConfirmed) {
-                          _context2.next = 9;
-                          break;
-                        }
-                        _context2.next = 3;
-                        return fetch("/api/calendar/users/".concat(id), {
-                          method: 'DELETE',
-                          headers: {
-                            "Content-Type": "application/json",
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+              try {
+                user = _this2.users.find(function (user) {
+                  return user.id == id;
+                });
+                sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+                  title: "user ".concat(user.name, " will be deleted?"),
+                  text: "You won't be able to revert this!",
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Delete'
+                }).then( /*#__PURE__*/function () {
+                  var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime().mark(function _callee2(result) {
+                    var response;
+                    return _regeneratorRuntime().wrap(function _callee2$(_context2) {
+                      while (1) switch (_context2.prev = _context2.next) {
+                        case 0:
+                          if (!result.isConfirmed) {
+                            _context2.next = 9;
+                            break;
                           }
-                        });
-                      case 3:
-                        response = _context2.sent;
-                        _context2.next = 6;
-                        return response.json();
-                      case 6:
-                        _context2.next = 8;
-                        return _this2.getUsers();
-                      case 8:
-                        sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
-                          position: 'center',
-                          icon: 'success',
-                          title: "user ".concat(user.name, " was deleted"),
-                          showConfirmButton: false,
-                          timer: 2000
-                        });
-                      case 9:
-                      case "end":
-                        return _context2.stop();
-                    }
-                  }, _callee2);
-                }));
-                return function (_x) {
-                  return _ref.apply(this, arguments);
-                };
-              }());
-            case 2:
+                          _context2.next = 3;
+                          return fetch("/api/calendar/users/".concat(id), {
+                            method: 'DELETE',
+                            headers: {
+                              "Content-Type": "application/json",
+                              'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                            }
+                          });
+                        case 3:
+                          response = _context2.sent;
+                          _context2.next = 6;
+                          return response.json();
+                        case 6:
+                          _context2.next = 8;
+                          return _this2.getUsers();
+                        case 8:
+                          sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: "user ".concat(user.name, " was deleted"),
+                            showConfirmButton: false,
+                            timer: 2000
+                          });
+                        case 9:
+                        case "end":
+                          return _context2.stop();
+                      }
+                    }, _callee2);
+                  }));
+                  return function (_x) {
+                    return _ref.apply(this, arguments);
+                  };
+                }());
+              } catch (error) {
+                sweetalert2__WEBPACK_IMPORTED_MODULE_0___default().fire({
+                  position: 'center',
+                  icon: 'warning',
+                  title: "something went wrong",
+                  showConfirmButton: false,
+                  timer: 2000
+                });
+              }
+            case 1:
             case "end":
               return _context3.stop();
           }
@@ -627,7 +637,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[0] || (_cache[0] = function () {
       return $options.showSaveForm && $options.showSaveForm.apply($options, arguments);
     })
-  }, "Add new user"), $data.showModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Modal, {
+  }, "Add new user"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" Modal "), $data.showModal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(_component_Modal, {
     key: 0,
     id: 'formModal'
   }, {
@@ -640,7 +650,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         ref: "userForm",
         onSubmitUser: $options.getSubmittedUser
       }, null, 8 /* PROPS */, ["user", "onSubmitUser"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-        "class": "p-2 font-semibold border-2 mr-2",
+        "class": "p-2 font-semibold border-2 mr-2 add-button",
         onClick: _cache[1] || (_cache[1] = function () {
           return $options.submitForm && $options.submitForm.apply($options, arguments);
         })
@@ -648,7 +658,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         onClick: _cache[2] || (_cache[2] = function ($event) {
           return $data.showModal = false;
         }),
-        "class": "p-2 font-semibold border-2 rounded-md"
+        "class": "p-2 font-semibold border-2 rounded-md error"
       }, "Close")])];
     }),
     _: 1 /* STABLE */
@@ -657,7 +667,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, {
     eventContent: (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function (arg) {
       return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
-        "class": "text-lg cursor-pointer",
+        "class": "text-lg cursor-pointer warn",
         onClick: function onClick($event) {
           return $options.showUpdateForm(arg.event.id);
         }
@@ -670,7 +680,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         viewBox: "0 0 24 24",
         "stroke-width": "1.5",
         stroke: "currentColor",
-        "class": "w-6 h-6 ml-3 cursor-pointer"
+        "class": "w-6 h-6 ml-3 cursor-pointer error"
       }, _hoisted_8, 8 /* PROPS */, _hoisted_6))])];
     }),
     _: 1 /* STABLE */
@@ -760,7 +770,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.add-button[data-v-ef10eebe] {\n    background-color: #706edf;\n    color: #fff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.add-button[data-v-ef10eebe] {\n    background-color: #706edf;\n    color: #fff;\n}\n.error[data-v-ef10eebe]{\n    color: #ff0000;\n}\n.warn[data-v-ef10eebe] {\n    color: #f59133;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 

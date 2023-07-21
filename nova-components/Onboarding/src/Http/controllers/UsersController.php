@@ -16,7 +16,7 @@ class UsersController
     public function index(Request $request)
     {
         $per_page = $request->query('per_page') ?? 5;
-        $users = User::paginate($per_page);
+        $users = User::orderBy('id', 'desc')->paginate($per_page);
         return $users;
     }
 

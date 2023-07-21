@@ -93,8 +93,8 @@ class NovaServiceProvider extends NovaApplicationServiceProvider
         Nova::mainMenu(function(Request $request){
             return [
                 MenuSection::dashboard(Main::class)->icon('chart-bar'),
-                MenuSection::make('calendar')->path('/calendar')->icon('calendar'),
-                MenuSection::make('onboarding')->path('/onboarding')->icon('user'),
+                MenuSection::make('Calendar')->path('/calendar')->icon('calendar'),
+                MenuSection::make('Users')->path('/onboarding')->icon('user'),
 
             ];
         });
