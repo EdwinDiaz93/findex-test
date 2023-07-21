@@ -3794,14 +3794,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }), 128 /* KEYED_FRAGMENT */))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     id: $props.prevId,
     disabled: !$props.data.prev_page_url,
-    "class": "border-2 rounded-md font-bold p-2",
+    "class": "border-2 rounded-md font-bold p-2 warn-button",
     onClick: _cache[0] || (_cache[0] = function ($event) {
       return $setup.select($props.data.prev_page_url);
     })
   }, " Previous Page ", 8 /* PROPS */, _hoisted_5), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     id: $props.nextId,
     disabled: !$props.data.next_page_url,
-    "class": "border-2 rounded-md font-bold p-2 ml-3",
+    "class": "border-2 rounded-md font-bold p-2 ml-3 add-button",
     onClick: _cache[1] || (_cache[1] = function ($event) {
       return $setup.select($props.data.next_page_url);
     })
@@ -4070,7 +4070,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.main[data-v-05c327e8] {\n    font-family: Arial, Helvetica, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\n.main td[data-v-05c327e8],\n.main th[data-v-05c327e8] {\n    border: 1px solid #ddd;\n    padding: 8px;\n}\n.main tr[data-v-05c327e8]:nth-child(even) {\n    background-color: #f2f2f2;\n}\n.main tr[data-v-05c327e8]:hover {\n    background-color: #ddd;\n}\n.main th[data-v-05c327e8] {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #000;\n    color: white;\n}\n.pagination[data-v-05c327e8] {\n    display: flex;\n    flex-flow: row wrap;\n}\n.pagination a[data-v-05c327e8] {\n    color: black;\n    float: left;\n    padding: 8px 16px;\n    text-decoration: none;\n    margin-top: 1rem;\n    justify-content: right;\n    align-items: center;\n}\n.pagination a.active[data-v-05c327e8] {\n    background-color: #4CAF50;\n    color: white;\n    border-radius: 5px;\n}\n.pagination a[data-v-05c327e8]:hover:not(.active) {\n    background-color: #ddd;\n    border-radius: 5px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.main[data-v-05c327e8] {\n    font-family: Arial, Helvetica, sans-serif;\n    border-collapse: collapse;\n    width: 100%;\n}\n.main td[data-v-05c327e8],\n.main th[data-v-05c327e8] {\n    border: 1px solid #ddd;\n    padding: 8px;\n}\n.main tr[data-v-05c327e8]:nth-child(even) {\n    background-color: #f2f2f2;\n}\n.main tr[data-v-05c327e8]:hover {\n    background-color: #ddd;\n}\n.main th[data-v-05c327e8] {\n    padding-top: 12px;\n    padding-bottom: 12px;\n    text-align: left;\n    background-color: #000;\n    color: white;\n}\n.pagination[data-v-05c327e8] {\n    display: flex;\n    flex-flow: row wrap;\n}\n.pagination a[data-v-05c327e8] {\n    color: black;\n    float: left;\n    padding: 8px 16px;\n    text-decoration: none;\n    margin-top: 1rem;\n    justify-content: right;\n    align-items: center;\n}\n.pagination a.active[data-v-05c327e8] {\n    background-color: #4CAF50;\n    color: white;\n    border-radius: 5px;\n}\n.pagination a[data-v-05c327e8]:hover:not(.active) {\n    background-color: #ddd;\n    border-radius: 5px;\n}\n.warn-button[data-v-05c327e8] {\n    background-color: #f59133;\n    color: #fff;\n}\n.add-button[data-v-05c327e8] {\n    background-color: #706edf;\n    color: #fff;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
