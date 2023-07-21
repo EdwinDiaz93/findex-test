@@ -24,10 +24,10 @@
                                             `${index + 1}/${steps.length}` }}</span>
                                     <template v-if="!isFirst">
                                         <button @click="previous" type="button"
-                                            class="inline-flex items-center justify-center rounded-md border border-transparent bg-yellow-100 px-4 py-2 font-medium text-yellow-700 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 sm:text-sm">Previous</button>
+                                            class="border-2 rounded-md font-bold p-2 mb-2 warn-button">Previous</button>
                                     </template>
                                     <button @click="next" type="button"
-                                        class="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm">{{
+                                        class="border-2 rounded-md font-bold p-2 mb-2 add-button">{{
                                             isLast ? 'Finish' : 'Next' }}</button>
                                 </div>
                             </div>
@@ -307,6 +307,11 @@ onMounted(async () => {
 <style  scoped>
 .warn {
     color: #f59133;
+}
+
+.warn-button {
+    background-color: #f59133;
+    color: #fff;
 }
 
 .add-button {

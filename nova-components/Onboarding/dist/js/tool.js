@@ -3908,11 +3908,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             key: 0,
             onClick: previous,
             type: "button",
-            "class": "inline-flex items-center justify-center rounded-md border border-transparent bg-yellow-100 px-4 py-2 font-medium text-yellow-700 hover:bg-yellow-200 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 sm:text-sm"
+            "class": "border-2 rounded-md font-bold p-2 mb-2 warn-button"
           }, "Previous", 8 /* PROPS */, _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
             onClick: next,
             type: "button",
-            "class": "inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:text-sm"
+            "class": "border-2 rounded-md font-bold p-2 mb-2 add-button"
           }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(isLast ? 'Finish' : 'Next'), 9 /* TEXT, PROPS */, _hoisted_11)])])])])];
         }),
         _: 2 /* DYNAMIC */
@@ -4094,7 +4094,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n.warn[data-v-ef10eebe] {\n    color: #f59133;\n}\n.add-button[data-v-ef10eebe] {\n    background-color: #706edf;\n    color: #fff;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n.warn[data-v-ef10eebe] {\n    color: #f59133;\n}\n.warn-button[data-v-ef10eebe] {\n    background-color: #f59133;\n    color: #fff;\n}\n.add-button[data-v-ef10eebe] {\n    background-color: #706edf;\n    color: #fff;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
