@@ -18,32 +18,34 @@ NOVA_LICENSE_KEY
 composer install
 ```
 
-4. Opcional: ejecutar el comando para poblar la base de datos:
+4. Crer una copia del archivo env.example y renombrarlo a .env 
+
+5. Opcional: ejecutar el comando para poblar la base de datos:
 ```
 php artisan migrate:refresh --seed
 ```
 
-5. reconstruir las dependencias de node ejecutando:
+6. reconstruir las dependencias de node ejecutando:
 
 ```
 npm install
 ```
 
-6. levantar el proyecto laravel ejecutando el comando:
+7. levantar el proyecto laravel ejecutando el comando:
 ```
 php artisan serve
 ```
 
-7. en otra terminal ejecutar el comando:
+8. en otra terminal ejecutar el comando:
 ```
 npm run dev
 ```
 
-8. finalmente crear un usuario nova ejecutando el comando:
+9. finalmente crear un usuario nova ejecutando el comando:
 ```
 php artisan nova:user
 ```
 esto pedira llenar unos datos para tener el usuario nova
 
-9. ver demo en el siguiente [enlace](https://drive.google.com/file/d/19YFHyv1T7QdpsjLpQIIAJsCHxZpdzINA/view?usp=drive_link)
+10. ver demo en el siguiente [enlace](https://drive.google.com/file/d/19YFHyv1T7QdpsjLpQIIAJsCHxZpdzINA/view?usp=drive_link)
 
