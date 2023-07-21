@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "075c9d81b2890eb555531ad81f52be8c",
+    "content-hash": "7d0e81ecf4b13590d4925d2d82118580",
     "packages": [
         {
             "name": "brick/math",
@@ -768,7 +768,7 @@
         },
         {
             "name": "edwin/calendar",
-            "version": "dev-NT-02/create-tool",
+            "version": "dev-NT-05/create-onboarding-tool",
             "dist": {
                 "type": "path",
                 "url": "./nova-components/Calendar",
@@ -788,6 +788,42 @@
             "autoload": {
                 "psr-4": {
                     "Edwin\\Calendar\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "A Laravel Nova tool.",
+            "keywords": [
+                "laravel",
+                "nova"
+            ],
+            "transport-options": {
+                "relative": true
+            }
+        },
+        {
+            "name": "edwin/onboarding",
+            "version": "dev-NT-05/create-onboarding-tool",
+            "dist": {
+                "type": "path",
+                "url": "./nova-components/Onboarding",
+                "reference": "5f7bdcaca85053f05fc0fe488bd8fcc3a6da66a3"
+            },
+            "require": {
+                "php": "^7.3|^8.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Edwin\\Onboarding\\ToolServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Edwin\\Onboarding\\": "src/"
                 }
             },
             "license": [
@@ -8990,7 +9026,8 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "edwin/calendar": 20
+        "edwin/calendar": 20,
+        "edwin/onboarding": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

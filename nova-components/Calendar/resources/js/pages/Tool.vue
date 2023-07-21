@@ -83,38 +83,49 @@ export default {
             this.showModal = true;
         },
         async deleteUser(id) {
-            const user = this.users.find(user => user.id == id);
-            Swal.fire({
-                title: `user ${user.name} will be deleted?`,
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Delete'
-            }).then(async (result) => {
-                if (result.isConfirmed) {
-                    const response = await fetch(`/api/calendar/users/${id}`, {
-                        method: 'DELETE',
-                        headers: {
-                            "Content-Type": "application/json",
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
-                        },
-                    });
+            try {
+                const user = this.users.find(user => user.id == id);
+                Swal.fire({
+                    title: `user ${user.name} will be deleted?`,
+                    text: "You won't be able to revert this!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Delete'
+                }).then(async (result) => {
+                    if (result.isConfirmed) {
+                        const response = await fetch(`/api/calendar/users/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                "Content-Type": "application/json",
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                            },
+                        });
 
-                    await response.json();
+                        await response.json();
 
-                    await this.getUsers();
+                        await this.getUsers();
 
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: `user ${user.name} was deleted`,
-                        showConfirmButton: false,
-                        timer: 2000
-                    });
-                }
-            })
+                        Swal.fire({
+                            position: 'center',
+                            icon: 'success',
+                            title: `user ${user.name} was deleted`,
+                            showConfirmButton: false,
+                            timer: 2000
+                        });
+                    }
+                })
+            } catch (error) {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'warning',
+                    title: `something went wrong`,
+                    showConfirmButton: false,
+                    timer: 2000
+                });
+            }
+
 
         },
 
