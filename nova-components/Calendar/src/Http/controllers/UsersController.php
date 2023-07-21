@@ -3,11 +3,16 @@
 namespace Edwin\Calendar\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
 class UsersController
 {
+    use AuthorizesRequests, ValidatesRequests;
+
+
     public function index(Request $request)
     {
         $users = User::all();
