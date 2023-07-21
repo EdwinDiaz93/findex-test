@@ -19,6 +19,8 @@
   "dependencies": {
     "@fullcalendar/core": "^6.1.8",
     "@fullcalendar/daygrid": "^6.1.8",
-    "@fullcalendar/vue3": "^6.1.8"
+    "@fullcalendar/vue3": "^6.1.8",
+    "@vuelidate/core": "^2.0.3",
+    "@vuelidate/validators": "^2.0.3"
   }
 }

@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\UsersController;
+use Edwin\Calendar\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +16,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/users', [UsersController::class, 'index']);
+Route::post('/users', [UsersController::class, 'store']);
+Route::delete('/users/{user}',[UsersController::class,'destroy']);
+Route::put('/users/{user}',[UsersController::class,'update']);
