@@ -1,5 +1,5 @@
 <template>
-    <div class="modal-overlay" >
+    <div :id="id" class="modal-overlay">
         <div class="modal">
             <slot name="title"></slot>
             <slot></slot>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-
+    props: ['id'],
 }
 </script>
 

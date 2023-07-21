@@ -24,28 +24,29 @@
                 </ul>
             </div>
 
-            <div class="flex flex-row flex-wrap gap-3 mt-3">
-                <slot></slot>
-            </div>
+
         </form>
     </div>
 </template>
 
 <script setup>
-import { computed, onMounted, defineEmits,defineExpose, ref } from 'vue';
+import { computed, onMounted, defineEmits, defineExpose, defineProps, ref } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, minLength, email } from '@vuelidate/validators';
 
+const { user } = defineProps(['user']);
+
 const state = ref({
-    name: '',
-    email: '',
-    password: ''
+    id: user.id,
+    name: user.name,
+    email: user.email,
+    password: user.password,
 });
 
 const rules = computed(() => ({
     name: { required, minLength: minLength(5) },
     email: { required, minLength: minLength(5), email },
-    password: { required, minLength: minLength(8) },
+    password: user.id === 0 ? { required, minLength: minLength(8) } : { minLength: minLength(8) },
 }))
 
 const v$ = useVuelidate(rules, state.value);
